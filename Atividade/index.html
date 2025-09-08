@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"/>
+    <title>Praticando FlexBox</title>
+    <style>
+        /* Esse asterisco abaixo faz com que TODOS os elementos do html recebam as configurações que desejamos */
+        /* Isso não significa que essa configurações serão permanentes, ainda podemos modifica-las */
+        *{
+            padding: 0px;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Definimos que nosso body(corpo) tenha uma altura de 100vh, ou seja, ele vai ocupar 100% da viewport da página */
+        body{
+            height: 100vh;
+            box-sizing: border-box;
+            background-color: lightcoral;
+        }
+
+        /* No html e css temos a questão do aninhamento(uma coisa dentro da outra), eles são retratados com pai e filho.*/
+        /* Na flexbox, normalmente, o "display: flex" só é utilizado pelas tags pai.*/
+        /* O flex funciona basicamente assim, em uma caixa flexivel existe dois eixos, a main-axis(Eixo horizontal) e a cross-axis(Eixo vertical) e esses eixos tem um começo e um final, esse começo e esse final é definido como base tamanho do nosso container*/
+        div.container{ /* A tag "div.container" é uma tag pai, já que existe outras tags dentro dela.  */
+            display: flex;
+        }
+        /* Mesmo que normalmente colocamos "display: flex" só nas tags pai, ainda podemos colocar caixas flexiveis dentro de outras caixas flexiveis, esse é o caso da tag abaixo, a "nav.slidebar". */
+        nav#slidebar{
+            display: flex;
+            background-color: lightcoral;
+            flex-flow: column wrap;  /*"flex-flow" é a junção de duas tags, a "flex-direction" e a "flex-wrap". */
+            border-right: 2px solid crimson; 
+        }
+
+        nav#slidebar > a{
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            padding: 20px;
+            color: crimson;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0px 10px 10px rgba(150, 0, 30, 0.39);
+            transition: .1s;
+        }
+
+        nav#slidebar > a.ph-fill > p{
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        nav#slidebar > a:hover{
+            box-shadow: inset 0px 10px 10px rgba(150, 0, 30, 0.39);
+            background-color: crimson;
+            color: lightcoral;
+        }
+
+        nav#slidebar > a:focus{
+            background-color: white;
+
+        }
+
+        div.contant{
+            display: flex;
+            flex-flow: column wrap;
+            
+        }
+
+        div.contant > header{
+            background-color: lightcoral;
+            display: flex;
+            padding: 16.5px;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 10px 10px rgba(100, 6, 25, 0.26);
+            color: crimson;
+        }
+        div.contant > header > h1{
+            margin: auto;
+        }
+
+        div.contant > header > a{
+            text-decoration: none;
+            font-size: 40px;
+            color: crimson;
+        }
+
+        main{
+            background-color: lightcoral;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0px;
+            
+        }
+
+        main > section{
+            border-radius: 10px;
+            width: 500px;
+            margin: 5px;
+            text-align: justify;
+            align-self: flex-start;
+            padding: 20px;
+            background-color: crimson;
+            color: white;
+            box-shadow: 0px 10px 10px rgba(87, 5, 21, 0.438);
+            border: 2px solid rgb(255, 255, 255);
+        }
+
+        main > section.secao01{
+            order: -2;
+        }
+
+        main > section.secao02{
+            order: -1;
+        }
+
+        footer{
+            background-color: crimson;
+            padding: 30px;
+            color: white;
+            text-align: center; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer > div.contatos{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        footer > div.contatos > a{
+            text-decoration: none;
+            color: lightcoral;
+            border: 2px solid lightcoral;
+            border-radius: 50%;
+            padding: 10px;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Primeiro criamos uma div com a class "container", dentro dela em onde vai ficar nosso slidebar e nosso conteúdo -->
+    <div class="container">
+        <nav id="slidebar">
+            <!-- A tag "nav" significa navegação, é área onde colocamos os links de navegação do nosso site -->
+            <!-- Irei explicar na parte do css o que seria essa classe, mas resumindo, colocando essa classe, a fonte será substituida por um icone -->
+            <a href="#" class="ph-fill ph-house"><p>Home</p></a> 
+            <a href="#" class="ph-fill ph-chats"><p>Forúm</p></a>
+            <a href="#" class="ph-fill ph-envelope"><p>Reportar</p></a>
+            <a href="#" class="ph-fill ph-gear"><p>Configuração</p></a>
+        </nav>
+        <!-- Abaixo está nosso conteúdo, criamos uma div com a classe "contant" e dentro dela temos nosso header(cabeçalho) e o main(local onde fica todo o conteúdo da página) -->
+        <div class="contant">
+            <header>
+                <h1>Praticando FlexBox</h1>
+                <a href="perfil.html" class="ph-fill ph-user-circle"></a>
+            </header>
+            <main>
+                <section>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequatur minus dolorum dignissimos debitis autem at nulla vero modi nihil perferendis, reiciendis reprehenderit asperiores quia, repellendus animi quasi dolorem magni? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas possimus quae, nostrum laudantium cumque commodi! Quos voluptas eaque velit adipisci voluptate, minima, obcaecati est tenetur consequatur quas eum esse doloribus! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima deserunt accusantium repudiandae libero. Esse optio inventore nesciunt molestias ad totam eius, harum sint repudiandae ipsam minima laudantium cupiditate impedit natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque exercitationem vero id. Aliquid dolorem sequi praesentium ducimus reprehenderit explicabo a itaque quae magnam labore debitis vero autem, at unde maxime!</p>
+                </section>
+                <section class="secao01"> 
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam debitis optio voluptate ex sequi alias sunt explicabo accusamus voluptatem incidunt? Sed nobis libero expedita beatae quia minus facere provident iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque animi illum repudiandae cumque! Delectus nihil iusto dolorem nulla consequuntur dolor eveniet earum doloremque, ullam harum molestias esse est ea voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis vel fugiat enim magni deserunt. Suscipit quod nam alias ipsum, cupiditate aut beatae at soluta temporibus voluptatum sit exercitationem sequi repellendus. </p>
+                </section>
+                <section class="secao02">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum delectus explicabo harum assumenda a sed dolor suscipit quaerat earum obcaecati! Animi repudiandae ut mollitia, dolores aliquid eum corporis nesciunt ipsam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem at, exercitationem saepe ea dolorem optio delectus reiciendis quo possimus eligendi rerum modi excepturi tempora officiis vel! Nulla at laborum distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae tempora, iusto, nostrum non facere perferendis recusandae quidem cumque aut sit saepe ex esse dolores! Officiis in doloremque ex porro aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, voluptates, necessitatibus ipsa fuga aspernatur rem officiis a officia facere explicabo sit autem, dolorem magni ipsam! Similique omnis ad voluptatibus vero. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate reprehenderit nobis, fuga repellat molestias autem recusandae facere nemo, rerum labore aut itaque saepe facilis nostrum corporis quidem suscipit tenetur repudiandae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus vero repellendus libero eos, modi aut perspiciatis cum rerum sunt? Beatae aliquam delectus natus doloribus fuga voluptas sunt hic nobis odio? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore labore culpa molestiae exercitationem est adipisci voluptate minus? Harum, pariatur. Accusamus dolore iusto corrupti voluptate. Sit, rerum! Molestiae corrupti eveniet dicta!</p>
+                </section>
+                <section class="secao02">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam aspernatur sequi ducimus voluptas officiis similique iusto at possimus esse soluta id, sed quae tempora illo, laudantium laborum. Nisi, rerum velit! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime impedit eligendi illum recusandae deleniti. Aut saepe nulla, mollitia reiciendis ducimus, numquam temporibus nisi officiis molestiae explicabo unde illum dolore excepturi? Lorem ipsum dolor sit amet consectetur adipisicing elit. A distinctio voluptates tempora adipisci, exercitationem ab qui doloremque aliquam, optio quaerat commodi deleniti dolorem culpa provident voluptatibus itaque aspernatur, impedit animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore possimus rem, non nihil quaerat asperiores perferendis rerum accusamus, sed ratione ab. Tempora molestias reiciendis voluptatum corporis. Nemo culpa obcaecati soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, molestiae corporis quas tempore aut odit est facilis, in nihil sunt adipisci eum iusto quos quisquam voluptates quis necessitatibus eius recusandae? Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi pariatur fugiat amet odio commodi cum sequi reprehenderit quibusdam nostrum ad ab fuga, cumque, eum tempora. Eligendi tempora nostrum doloribus iure? Lorem ipsum dolor sit amet consectetur adipisicing elit. At dolorem similique sequi molestiae. Quisquam nulla a quo ipsa dignissimos sit. Officia non dolore consequuntur tempora doloremque molestias sit libero iure.</p>
+                </section>
+                <section class="secao01">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia a exercitationem atque maxime minima nobis minus ipsum ea delectus perferendis? Itaque, quia. Voluptatum provident excepturi recusandae, fugiat voluptatem sint aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quisquam doloremque soluta nulla est. Tempore cupiditate exercitationem numquam quibusdam a iure vero quae dolorum, aspernatur rem laudantium minima doloribus corporis? Aliquid dolorem sequi praesentium ducimus reprehenderit explicabo a itaque quae magnam labore debitis vero autem, at unde maxime!</p>
+                </section>
+            </main>
+        </div>
+    </div>
+    <footer>
+        <p>&copyAlisson Oliveira</p>
+        <div class="contatos">
+            <a href="https://github.com/AlissonSena123?tab=repositories" class="ph-fill ph-github-logo" target="_blank"></a>
+            <a href="https://www.instagram.com/alisson_sena2005/" class="ph-fill ph-instagram-logo" target="_blank"></a>
+            <a href="https://www.linkedin.com/in/alisson-oliveira-89611a321/" class="ph-fill ph-linkedin-logo" target="_blank"></a>
+        </div>
+    </footer>
+    
+</body>
+</html>
